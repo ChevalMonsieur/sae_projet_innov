@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://clt17hsf78oue"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ka7wh"]
+
+[sub_resource type="Gradient" id="Gradient_4mtl8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_14ogf"]
+gradient = SubResource("Gradient_4mtl8")
+use_hdr = true
+fill_from = Vector2(0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ka7wh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_14ogf")
+
+[node name="quit_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 450.0
+offset_right = 500.0
+offset_bottom = 500.0
+text = "Quit"
+
+[node name="play_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 375.0
+offset_right = 500.0
+offset_bottom = 425.0
+text = "Play"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 550.0
+offset_bottom = 325.0
+theme_override_font_sizes/font_size = 40
+text = "VIDEO GAME DE OUF"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="button_up" from="quit_button" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="play_button" to="." method="_on_play_button_up"]
