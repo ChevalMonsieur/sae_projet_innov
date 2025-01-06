@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=2 format=3 uid="uid://ctd5g0r1nj7rx"]
+
+[ext_resource type="Script" path="res://scripts/GlobalData.gd" id="1_700mr"]
 
 [node name="ActualGame" type="Node2D"]
+
+[node name="GlobalData" type="Node2D" parent="."]
+script = ExtResource("1_700mr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="lifecounter" type="Label" parent="Camera2D"]
+offset_left = -221.0
+offset_top = -386.0
+offset_right = 3979.0
+offset_bottom = 2338.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
+
+[node name="shieldcounter" type="Label" parent="Camera2D"]
+offset_left = 221.0
+offset_top = -386.0
+offset_right = 4421.0
+offset_bottom = 2338.0
+scale = Vector2(0.01, 0.01)
+theme_override_font_sizes/font_size = 2000
