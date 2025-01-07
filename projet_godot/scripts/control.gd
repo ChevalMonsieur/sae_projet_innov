@@ -1,11 +1,13 @@
 extends Control
+class_name UI
 
 @export var shield_points_label: Label
 
+static var instance: Control
+
 func _ready() -> void:
-	pass # Replace with function body.
+	instance = self
+	update_shield_label()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+static func update_shield_label() -> void:
+	instance.shield_points_label.text = "Shield points: %d" % Player.instance.shield

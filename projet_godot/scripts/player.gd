@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed: float = 5
 @export var bullet_scene: Resource
@@ -7,6 +8,10 @@ extends CharacterBody2D
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
+static var instance: Player
+
+func _ready() -> void:
+	instance = self
 
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
@@ -37,8 +42,10 @@ func manage_shoot(delta: float) -> void:
 		$"../bullets".add_child(bullet)
 
 func lose_shield_point() -> void:
-	print("lose shield point")
 	shield -= 1
+	
 	if shield < 0:
 		print("death")
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
+	else:
+		UI.update_shield_label()
