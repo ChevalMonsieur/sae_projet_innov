@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 const game_manager = preload("res://scripts/game_manager.gd")
 
@@ -16,12 +16,15 @@ func _physics_process(delta: float) -> void:
 		print(game_manager.current_state)
 
 func check_movement() -> void:
-	var movement = Vector2.ZERO
-	if (Input.is_key_pressed(KEY_Z)): movement.y -= 1
-	if (Input.is_key_pressed(KEY_S)): movement.y += 1
-	if (Input.is_key_pressed(KEY_Q)): movement.x -= 1
-	if (Input.is_key_pressed(KEY_D)): movement.x += 1
-	position += movement.normalized() * speed
+	velocity = Vector2.ZERO
+	
+	if (Input.is_key_pressed(KEY_Z)): velocity.y -= 1
+	if (Input.is_key_pressed(KEY_S)): velocity.y += 1
+	if (Input.is_key_pressed(KEY_Q)): velocity.x -= 1
+	if (Input.is_key_pressed(KEY_D)): velocity.x += 1
+	
+	velocity = velocity.normalized() * speed
+	move_and_slide()
 
 func manage_shoot(delta: float) -> void:
 	timer_bullet -= delta

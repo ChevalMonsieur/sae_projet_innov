@@ -10,4 +10,5 @@ func _physics_process(_delta: float) -> void:
 	position += direction * speed
 	
 	if position.x > get_viewport_rect().size.x or position.x < 0 or position.y > get_viewport_rect().size.y or position.y < 0:
+		print("killed bullet")
 		queue_free()
