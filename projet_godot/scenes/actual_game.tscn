@@ -1,27 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=9 format=3 uid="uid://ctd5g0r1nj7rx"]
 
-[ext_resource type="Script" path="res://scripts/GlobalData.gd" id="1_700mr"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
+[ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
+[ext_resource type="PackedScene" uid="uid://cw84y1vclotqx" path="res://scenes/other_player.tscn" id="3_8trkh"]
+[ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="4_4pc88"]
 
-[node name="ActualGame" type="Node2D"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
+a = Vector2(0, 800)
+b = Vector2(0, 0)
 
-[node name="GlobalData" type="Node2D" parent="."]
-script = ExtResource("1_700mr")
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4bhqc"]
+a = Vector2(800, 0)
+b = Vector2(800, 800)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bi7mb"]
+b = Vector2(800, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_557kd"]
+a = Vector2(0, 800)
+b = Vector2(800, 800)
+
+[node name="game_manager" type="Node2D"]
+script = ExtResource("1_g1kg4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 8)
+offset = Vector2(400, 400)
 
-[node name="lifecounter" type="Label" parent="Camera2D"]
-offset_left = -221.0
-offset_top = -386.0
-offset_right = 3979.0
-offset_bottom = 2338.0
-scale = Vector2(0.01, 0.01)
-theme_override_font_sizes/font_size = 2000
+[node name="Walls" type="Node" parent="."]
 
-[node name="shieldcounter" type="Label" parent="Camera2D"]
-offset_left = 221.0
-offset_top = -386.0
-offset_right = 4421.0
-offset_bottom = 2338.0
-scale = Vector2(0.01, 0.01)
-theme_override_font_sizes/font_size = 2000
+[node name="wall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/wall"]
+shape = SubResource("SegmentShape2D_tna4o")
+
+[node name="wall2" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/wall2"]
+shape = SubResource("SegmentShape2D_4bhqc")
+
+[node name="wall3" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/wall3"]
+shape = SubResource("SegmentShape2D_bi7mb")
+
+[node name="wall4" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/wall4"]
+shape = SubResource("SegmentShape2D_557kd")
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="player" parent="." instance=ExtResource("2_5lm4u")]
+position = Vector2(200, 400)
+
+[node name="player2" parent="." instance=ExtResource("3_8trkh")]
+position = Vector2(600, 400)
+speed = 150.0
+bullet_scene = ExtResource("4_4pc88")

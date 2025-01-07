@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmvvvafdjbyh"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_dhrar"]
+[ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="2_2yq6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmfm0"]
+
+[sub_resource type="Gradient" id="Gradient_l2dab"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxn3x"]
+gradient = SubResource("Gradient_l2dab")
+use_hdr = true
+
+[node name="player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_dhrar")
+speed = 150.0
+bullet_scene = ExtResource("2_2yq6u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cmfm0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("GradientTexture2D_yxn3x")
