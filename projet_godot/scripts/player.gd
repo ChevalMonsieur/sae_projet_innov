@@ -5,6 +5,7 @@ class_name Player
 @export var bullet_scene: Resource
 @export var cooldown_bullet: float = .2
 @export var max_shield: int = 5
+@export var death_count: int = 0
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
@@ -45,6 +46,8 @@ func lose_shield_point() -> void:
 	shield -= 1
 	
 	if shield < 0:
+		death_count += 1
+		UI.update_death_label()
 		print("death")
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
 	else:
