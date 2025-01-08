@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm5nycb7utcyf"]
+
+[ext_resource type="Texture2D" uid="uid://cb1l2ucptqmid" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Base/PNGs/Kla'ed - Battlecruiser - Base.png" id="1_452vc"]
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_vlte7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upi1x"]
+size = Vector2(14.4, 17.6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blal3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_452vc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_vlte7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.43051e-06, -7)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_upi1x")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_blal3")

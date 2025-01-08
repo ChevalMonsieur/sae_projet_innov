@@ -2,14 +2,21 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dhrar"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="2_2yq6u"]
+[ext_resource type="Texture2D" uid="uid://bo3613u3fawpp" path="res://sprites/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="3_rgd4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmfm0"]
+size = Vector2(30, 26)
 
-[sub_resource type="Gradient" id="Gradient_l2dab"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxn3x"]
-gradient = SubResource("Gradient_l2dab")
-use_hdr = true
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkhsn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rgd4y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 motion_mode = 1
@@ -20,7 +27,5 @@ bullet_scene = ExtResource("2_2yq6u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cmfm0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.3125, 0.3125)
-texture = SubResource("GradientTexture2D_yxn3x")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qkhsn")

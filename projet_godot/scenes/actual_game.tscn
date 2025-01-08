@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="PackedScene" uid="uid://cw84y1vclotqx" path="res://scenes/other_player.tscn" id="3_8trkh"]
+[ext_resource type="PackedScene" uid="uid://bm5nycb7utcyf" path="res://scenes/boss.tscn" id="3_8sxf3"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="4_4pc88"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
@@ -53,7 +53,6 @@ shape = SubResource("SegmentShape2D_557kd")
 [node name="player" parent="." instance=ExtResource("2_5lm4u")]
 position = Vector2(200, 400)
 
-[node name="player2" parent="." instance=ExtResource("3_8trkh")]
-position = Vector2(600, 400)
-speed = 150.0
+[node name="boss" parent="." instance=ExtResource("3_8sxf3")]
+position = Vector2(565, 386)
 bullet_scene = ExtResource("4_4pc88")
