@@ -32,7 +32,7 @@ func manage_shoot(delta: float) -> void:
 		timer_bullet += cooldown_bullet
 		
 		var bullet = bullet_scene.instantiate()
-		bullet.instantiator = self
+		bullet.instantiatorr = self
 		bullet.position = position
 		bullet.direction = (get_viewport().get_mouse_position() - position).normalized()
 		$"../bullets".add_child(bullet)
