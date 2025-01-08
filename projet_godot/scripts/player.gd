@@ -5,15 +5,12 @@ extends CharacterBody2D
 @export var cooldown_bullet: float = .2
 @export var max_shield: int = 5
 
-@onready var sprite = $AnimatedSprite2D
-
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
 
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
 		check_movement()
-		check_rotation()
 		manage_shoot(delta)
 
 func check_movement() -> void:
@@ -26,11 +23,6 @@ func check_movement() -> void:
 	
 	velocity = velocity.normalized() * speed
 	move_and_slide()
-	
-func check_rotation() -> void:
-	var mouse_position = get_global_mouse_position()
-	var direction = mouse_position - global_position
-	sprite.rotation = direction.angle() + PI/2
 
 func manage_shoot(delta: float) -> void:
 	timer_bullet -= delta

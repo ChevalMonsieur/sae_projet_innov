@@ -17,3 +17,4 @@ func _physics_process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name.contains("player") and body != instantiator:
 		body.lose_shield_point()
+		queue_free()
