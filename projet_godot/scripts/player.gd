@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 @export var speed: float = 5
 @export var bullet_scene: Resource
 @export var cooldown_bullet: float = .2
