@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://c4y0r7a3n3tdh"]
+[gd_scene load_steps=18 format=3 uid="uid://bpoagjmiankm5"]
 
 [ext_resource type="Texture2D" uid="uid://bpy6bjbqtgr67" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Destruction/PNGs/Kla'ed - Battlecruiser - Destruction.png" id="1_qbk87"]
-[ext_resource type="Script" path="res://scripts/animated_sprite_2d.gd" id="2_q7d1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2qksj"]
 atlas = ExtResource("1_qbk87")
@@ -109,6 +108,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_bjj76"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	play(\"default\")
+
+func _process(delta: float) -> void:
+	if frame == 13:
+		GameManager.current_state = GameManager.STATE.IN_GAME
+		queue_free()
+"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_i65ri")
-script = ExtResource("2_q7d1d")
+script = SubResource("GDScript_bjj76")

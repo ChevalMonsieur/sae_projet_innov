@@ -2,12 +2,17 @@ extends CharacterBody2D
 
 class_name Player
 @export var speed: float = 5
+@export var base_position: Vector2 = Vector2.ZERO
 @export var bullet_scene: Resource
 @export var cooldown_bullet: float = .2
 @export var max_shield: int = 5
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
+
+func new_round() -> void:
+	position = base_position
+	shield = max_shield
 
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
@@ -32,7 +37,7 @@ func manage_shoot(delta: float) -> void:
 		timer_bullet += cooldown_bullet
 		
 		var bullet = bullet_scene.instantiate()
-		bullet.instantiatorr = self
+		bullet.creator = self
 		bullet.position = position
 		bullet.direction = (get_viewport().get_mouse_position() - position).normalized()
 		$"../bullets".add_child(bullet)

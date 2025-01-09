@@ -1,46 +1,51 @@
 extends CharacterBody2D
-
 class_name Boss
+
 @export var speed: float = 5
-@export var bullet_scene: Resource
+@export var base_position: Vector2 = Vector2.ZERO
+@export var bullet_scene: PackedScene
 @export var cooldown_bullet: float = .3
 @export var max_shield: int = 5
 @export var max_phases: int = 5
-@export var destruction: PackedScene
 @onready var sprite = $AnimatedSprite2D
 @onready var player = get_node("../player")
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
-var phase: int = 1
 
-func _ready() -> void:
-	match GameManager.current_phase:
+func new_round() -> void:
+	sprite.play("idle")
+	match GameManager.current_round:
 		1:
 			max_shield = 5
 			cooldown_bullet = .5
 			shield = max_shield
 			speed = 50
 		_:
-			max_shield = GameManager.current_phase * 10
-			cooldown_bullet = 0.5 / GameManager.current_phase
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
 			shield = max_shield
-			speed = min(GameManager.current_phase * 50, 200)
+			speed = min(GameManager.current_round * 50, 200)
 
 func _physics_process(delta):
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
 		check_movement()
 		check_rotation()
 		manage_shoot(delta)
-	if GameManager.current_state == GameManager.STATE.DEATH_AI:
-		if GameManager.current_phase < GameManager.max_phase:
-			GameManager.current_phase += 1
-			var instance = destruction.instantiate()
-			get_tree().root.add_child(instance)
-			queue_free()
-		else: 
-			GameManager.current_state = GameManager.STATE.DEATH_AI
+		
+	elif GameManager.current_state == GameManager.STATE.DEATH_AI:
+		sprite.play("destruction")
+		if GameManager.current_round < GameManager.max_round:
+			GameManager.current_state = GameManager.STATE.DEATH_AI_ANIM
+		else:
+			GameManager.current_round = GameManager.STATE.ENDED
 	
+	elif GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
+		if sprite.frame == 22:
+			GameManager.instance.new_round()
+			GameManager.current_state = GameManager.STATE.IN_GAME
+
+
 func check_movement() -> void:
 	velocity = Vector2.ZERO
 	
@@ -65,7 +70,8 @@ func manage_shoot(delta: float) -> void:
 		timer_bullet += cooldown_bullet
 		
 		var bullet = bullet_scene.instantiate()
-		bullet.instantiatorr = self
+		print(self)
+		bullet.creator = self
 		bullet.position = position
 		bullet.direction = (player.global_position - position).normalized()
 		$"../bullets".add_child(bullet)
@@ -75,5 +81,4 @@ func lose_shield_point() -> void:
 	shield -= 1
 	
 	if shield < 0:
-		print("Phase : ", phase, " done")
 		GameManager.current_state = GameManager.STATE.DEATH_AI
