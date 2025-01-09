@@ -33,15 +33,7 @@ bullets = NodePath("bullets")
 [node name="game_manager_setup" type="Node" parent="."]
 script = ExtResource("2_qlvaf")
 
-[node name="camera" type="Camera2D" parent="."]
-offset = Vector2(400, 400)
-
-[node name="player" parent="." instance=ExtResource("2_5lm4u")]
-position = Vector2(200, 400)
-base_position = Vector2(200, 400)
-
-[node name="boss" parent="." instance=ExtResource("3_i0hx4")]
-position = Vector2(498, 411)
+[node name="bullets" type="Node" parent="."]
 
 [node name="walls" type="Node" parent="."]
 
@@ -65,7 +57,8 @@ shape = SubResource("SegmentShape2D_bi7mb")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="walls/wall4"]
 shape = SubResource("SegmentShape2D_557kd")
 
-[node name="bullets" type="Node" parent="."]
+[node name="camera" type="Camera2D" parent="."]
+offset = Vector2(400, 400)
 
 [node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "death_container", "death_count_label")]
 layout_mode = 3
@@ -102,3 +95,10 @@ layout_mode = 2
 offset_bottom = 40.0
 
 [node name="AnimatedSprite2D" parent="ui/death_container" instance=ExtResource("6_6vr0k")]
+
+[node name="player" parent="." instance=ExtResource("2_5lm4u")]
+position = Vector2(200, 400)
+base_position = Vector2(200, 400)
+
+[node name="boss" parent="." instance=ExtResource("3_i0hx4")]
+position = Vector2(498, 411)
