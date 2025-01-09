@@ -44,11 +44,13 @@ func manage_shoot(delta: float) -> void:
 
 func lose_shield_point() -> void:
 	shield -= 1
+	UI.instance.current_shield = shield
+	print("Shield remaining: ", shield)  # Debug
 	
 	if shield < 0:
 		death_count += 1
-		UI.update_death_label()
-		print("death")
+		UI.instance.update_death_label()
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
 	else:
-		UI.update_shield_label()
+		UI.instance.update_hearts()
+		print("Hearts updated")  # Debug

@@ -40,5 +40,5 @@ func lose_shield_point() -> void:
 	print("lose shield point")
 	shield -= 1
 	if shield < 0:
-		print("death")
+		print("death of the BoT")
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER

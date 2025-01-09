@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
 [ext_resource type="PackedScene" uid="uid://c4odg0c3wbwt5" path="res://scenes/other_player.tscn" id="3_8trkh"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="4_4pc88"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="5_eor4a"]
+[ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="6_6vr0k"]
+[ext_resource type="PackedScene" uid="uid://cho1l78ac8p61" path="res://scenes/prefabs/skull.tscn" id="7_0qywr"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
 a = Vector2(0, 800)
@@ -59,27 +61,31 @@ shape = SubResource("SegmentShape2D_557kd")
 
 [node name="bullets" type="Node" parent="."]
 
-[node name="ui" type="Control" parent="." node_paths=PackedStringArray("shield_points_label", "death_count_label")]
+[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "death_count_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_eor4a")
-shield_points_label = NodePath("shield_points")
+heart_container = NodePath("heart_container")
+heart_scene = ExtResource("6_6vr0k")
+skull_scene = ExtResource("7_0qywr")
 death_count_label = NodePath("death_count")
 
-[node name="shield_points" type="Label" parent="ui"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 15.0
-offset_right = 129.0
-offset_bottom = 38.0
-text = "BLEH"
+[node name="heart_container" type="HBoxContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" parent="ui/heart_container" instance=ExtResource("6_6vr0k")]
 
 [node name="death_count" type="Label" parent="ui"]
-layout_mode = 0
-offset_left = 681.0
-offset_top = 15.0
-offset_right = 793.0
-offset_bottom = 38.0
+layout_mode = 2
+offset_left = 677.0
+offset_top = 20.0
+offset_right = 718.0
+offset_bottom = 43.0
 text = "BLEH"
