@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=13 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="Script" path="res://scenes/node.gd" id="2_qlvaf"]
-[ext_resource type="PackedScene" uid="uid://cf8pa80ukyq4y" path="res://scenes/boss.tscn" id="3_i0hx4"]
+[ext_resource type="Script" path="res://scripts/game_manager_setup.gd" id="2_qlvaf"]
+[ext_resource type="PackedScene" uid="uid://cs6ivonmlvy43" path="res://scenes/boss.tscn" id="3_i0hx4"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_eor4a"]
 [ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="6_6vr0k"]
 [ext_resource type="PackedScene" uid="uid://cho1l78ac8p61" path="res://scenes/prefabs/skull.tscn" id="7_0qywr"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="8_5pnj3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
 a = Vector2(0, 800)
@@ -102,3 +103,6 @@ base_position = Vector2(200, 400)
 
 [node name="boss" parent="." instance=ExtResource("3_i0hx4")]
 position = Vector2(498, 411)
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("8_5pnj3")

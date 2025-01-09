@@ -11,15 +11,26 @@ class_name Boss
 @export var max_shield: int = 5
 @export var max_phases: int = 5
 
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ai_controller: AIControllerCustom = $AIController2D
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
 
+func game_over():
+	ai_controller.done = true
+	ai_controller.needs_reset = true
+
 func _ready() -> void:
 	print(name)
+	print(ai_controller.heuristic)
+	ai_controller.init(self)
 
 func _physics_process(delta):
+	if ai_controller.needs_reset:
+		ai_controller.reset()
+		return
+
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
 		check_movement()
 		check_rotation()
@@ -34,16 +45,20 @@ func _physics_process(delta):
 	
 	elif GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
 		if sprite.frame == 22:
-			GameManager.instance.new_round()
+			GameManager.new_round()
 			GameManager.current_state = GameManager.STATE.IN_GAME
 
 func check_movement() -> void:
 	velocity = Vector2.ZERO
 	
-	if (Input.is_key_pressed(KEY_UP)): velocity.y -= 1
-	if (Input.is_key_pressed(KEY_DOWN)): velocity.y += 1
-	if (Input.is_key_pressed(KEY_LEFT)): velocity.x -= 1
-	if (Input.is_key_pressed(KEY_RIGHT)): velocity.x += 1
+	if ai_controller.heuristic == "human":
+		if (Input.is_key_pressed(KEY_UP)): velocity.y -= 1
+		if (Input.is_key_pressed(KEY_DOWN)): velocity.y += 1
+		if (Input.is_key_pressed(KEY_LEFT)): velocity.x -= 1
+		if (Input.is_key_pressed(KEY_RIGHT)): velocity.x += 1
+	else: 
+		velocity = ai_controller.move_action
+		print("move_input: " + str(velocity))
 	
 	velocity = velocity.normalized() * speed
 	move_and_slide()
@@ -52,8 +67,7 @@ func check_rotation() -> void:
 	var player_position = GameManager.instance.player.global_position
 	var direction = player_position - global_position
 	sprite.rotation = direction.angle() + PI/2
-	
-	
+
 func manage_shoot(delta: float) -> void:
 	timer_bullet -= delta
 	
@@ -64,15 +78,27 @@ func manage_shoot(delta: float) -> void:
 		print(self)
 		bullet.creator = self
 		bullet.position = position
-		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
+		print(ai_controller.heuristic)
+		if ai_controller.heuristic == "human": 
+			bullet.direction = (GameManager.instance.player.global_position - position).normalized()
+		else:
+			bullet.direction = ai_controller.shoot_direction_action
+			print("shoot_direction_input: " + str(bullet.direction))
 		GameManager.instance.bullets.add_child(bullet)
 
 func lose_shield_point() -> void:
 	print("lose shield point" + str(shield))
 	shield -= 1
+	reward_ai(-1)
 	
 	if shield < 0:
+		reward_ai(-10)
 		GameManager.current_state = GameManager.STATE.DEATH_AI
+		ai_controller.done = true
+		ai_controller.needs_reset = true
+
+func reward_ai(amount: float) -> void:
+	ai_controller.reward += amount
 
 func new_round() -> void:
 	sprite.play("idle")

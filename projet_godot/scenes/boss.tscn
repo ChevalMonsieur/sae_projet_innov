@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cf8pa80ukyq4y"]
+[gd_scene load_steps=23 format=3 uid="uid://cs6ivonmlvy43"]
 
 [ext_resource type="Texture2D" uid="uid://cb1l2ucptqmid" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Base/PNGs/Kla'ed - Battlecruiser - Base.png" id="1_452vc"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_vlte7"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="2_5fwp5"]
 [ext_resource type="Texture2D" uid="uid://bpy6bjbqtgr67" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Destruction/PNGs/Kla'ed - Battlecruiser - Destruction.png" id="3_w7j8i"]
+[ext_resource type="Script" path="res://scripts/ai_controller.gd" id="5_i8m6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upi1x"]
 size = Vector2(14.4, 17.6)
@@ -167,3 +168,6 @@ one_way_collision_margin = 0.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_blal3")
 animation = &"destruction"
+
+[node name="AIController2D" type="Node2D" parent="."]
+script = ExtResource("5_i8m6h")

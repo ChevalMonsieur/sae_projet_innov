@@ -14,19 +14,20 @@ static var current_state: STATE
 static var state_before_pause: STATE
 
 static var max_round: int = 4
-static var current_round: int = 1
+static var current_round: int = 0
 
 func _ready() -> void:
 	print(name)
+	new_round()
 
 	current_state = STATE.IN_GAME
 	instance = self
 	
-func new_round() -> void:
+static func new_round() -> void:
 	current_round += 1
-	$player.new_round()
-	$boss.new_round()
-	for bullet in $bullets.get_children():
+	GameManager.instance.player.new_round()
+	GameManager.instance.boss.new_round()
+	for bullet in GameManager.instance.bullets.get_children():
 		bullet.queue_free()
 
 func _process(_delta: float) -> void:
