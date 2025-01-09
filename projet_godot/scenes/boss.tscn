@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://qewlg3v7o5ey"]
+[gd_scene load_steps=22 format=3 uid="uid://cf8pa80ukyq4y"]
 
 [ext_resource type="Texture2D" uid="uid://cb1l2ucptqmid" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Base/PNGs/Kla'ed - Battlecruiser - Base.png" id="1_452vc"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_vlte7"]
@@ -153,7 +153,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="boss" type="CharacterBody2D"]
 script = ExtResource("1_vlte7")
 base_position = Vector2(600, 400)
 bullet_scene = ExtResource("2_5fwp5")
