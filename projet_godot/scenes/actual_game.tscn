@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
-[ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="PackedScene" uid="uid://c4odg0c3wbwt5" path="res://scenes/other_player.tscn" id="3_8trkh"]
+[ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
+[ext_resource type="PackedScene" uid="uid://cw84y1vclotqx" path="res://scenes/other_player.tscn" id="3_8trkh"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="4_4pc88"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="5_eor4a"]
 [ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="6_6vr0k"]
