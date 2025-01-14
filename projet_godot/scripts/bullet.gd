@@ -11,7 +11,6 @@ func _physics_process(_delta: float) -> void:
 
 		if position.x > get_viewport_rect().size.x or position.x < 0 or position.y > get_viewport_rect().size.y or position.y < 0:
 			queue_free()
-	get_child(0).material.set_shader_parameter("node_position", position)
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player or body is Boss) and body != creator:
