@@ -94,8 +94,6 @@ text = "BLEH"
 layout_mode = 2
 offset_bottom = 40.0
 
-[node name="AnimatedSprite2D" parent="ui/death_container" instance=ExtResource("6_6vr0k")]
-
 [node name="player" parent="." instance=ExtResource("2_5lm4u")]
 position = Vector2(200, 400)
 base_position = Vector2(200, 400)
