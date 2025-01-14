@@ -9,7 +9,7 @@ gradient = SubResource("Gradient_4mtl8")
 use_hdr = true
 fill_from = Vector2(0, 1)
 
-[node name="Control" type="Control"]
+[node name="Main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
