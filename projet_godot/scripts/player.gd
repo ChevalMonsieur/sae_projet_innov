@@ -7,6 +7,8 @@ class_name Player
 @export var cooldown_bullet: float = .2
 @export var max_shield: int = 5
 
+@onready var sprite = $AnimatedSprite2D
+
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
 
@@ -17,6 +19,7 @@ func new_round() -> void:
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
 		check_movement()
+		check_rotation()
 		manage_shoot(delta)
 
 func check_movement() -> void:
@@ -30,6 +33,11 @@ func check_movement() -> void:
 	velocity = velocity.normalized() * speed
 	move_and_slide()
 
+func check_rotation() -> void:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var direction = (mouse_pos - position).normalized()
+	sprite.rotation = direction.angle() + PI/2
+
 func manage_shoot(delta: float) -> void:
 	timer_bullet -= delta
 	
@@ -40,6 +48,7 @@ func manage_shoot(delta: float) -> void:
 		bullet.creator = self
 		bullet.position = position
 		bullet.direction = (get_viewport().get_mouse_position() - position).normalized()
+		
 		$"../bullets".add_child(bullet)
 
 func lose_shield_point() -> void:

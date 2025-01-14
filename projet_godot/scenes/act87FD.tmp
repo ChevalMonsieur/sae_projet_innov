@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=11 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
 [ext_resource type="PackedScene" uid="uid://chok0fgcl18xq" path="res://scenes/boss.tscn" id="3_8sxf3"]
 [ext_resource type="Texture2D" uid="uid://mmvjcrup7170" path="res://sprites/background/background_1.jpg" id="4_47hfl"]
 [ext_resource type="Script" path="res://scripts/countdown.gd" id="5_04ypf"]
-[ext_resource type="PackedScene" uid="uid://b8hym6ai1vb7j" path="res://scenes/next_round.tscn" id="6_xlbb8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
 a = Vector2(0, 800)
@@ -96,5 +95,3 @@ text = "Countdown"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="Next_round" parent="." instance=ExtResource("6_xlbb8")]

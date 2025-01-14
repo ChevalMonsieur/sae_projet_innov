@@ -7,25 +7,15 @@ class_name Boss
 @export var cooldown_bullet: float = .3
 @export var max_shield: int = 5
 @export var max_phases: int = 5
+
 @onready var sprite = $AnimatedSprite2D
 @onready var player = get_node("../player")
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
 
-func new_round() -> void:
-	sprite.play("idle")
-	match GameManager.current_round:
-		1:
-			max_shield = 5
-			cooldown_bullet = .5
-			shield = max_shield
-			speed = 50
-		_:
-			max_shield = GameManager.current_round * 10
-			cooldown_bullet = 0.5 / GameManager.current_round
-			shield = max_shield
-			speed = min(GameManager.current_round * 50, 200)
+func _ready():
+	sprite.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta):
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
@@ -34,16 +24,18 @@ func _physics_process(delta):
 		manage_shoot(delta)
 		
 	elif GameManager.current_state == GameManager.STATE.DEATH_AI:
-		sprite.play("destruction")
-		if GameManager.current_round < GameManager.max_round:
+		sprite.play(sprite.animation + "_destruction")
+		if GameManager.current_round <= GameManager.max_round:
 			GameManager.current_state = GameManager.STATE.DEATH_AI_ANIM
 		else:
-			GameManager.current_round = GameManager.STATE.ENDED
-	
-	elif GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
-		if sprite.frame == 22:
-			GameManager.instance.new_round()
-			GameManager.current_state = GameManager.STATE.IN_GAME
+			GameManager.current_state = GameManager.STATE.ENDED
+
+func _on_animation_finished():
+	print("Animation finished:", sprite.animation)
+	print("Current state:", GameManager.current_state)
+	if GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
+		print("Starting new round")
+		GameManager.instance.new_round()
 
 
 func check_movement() -> void:
@@ -82,3 +74,43 @@ func lose_shield_point() -> void:
 	
 	if shield < 0:
 		GameManager.current_state = GameManager.STATE.DEATH_AI
+		
+func new_round() -> void:
+	
+	match GameManager.current_round:
+		1:
+			sprite.play("boss_1")
+			max_shield = 5
+			cooldown_bullet = .5
+			shield = max_shield
+			speed = 50
+		2:
+			sprite.play("boss_2")
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
+			shield = max_shield
+			speed = min(GameManager.current_round * 50, 200)
+		3:
+			sprite.play("boss_3")
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
+			shield = max_shield
+			speed = min(GameManager.current_round * 50, 200)
+		4:
+			sprite.play("boss_4")
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
+			shield = max_shield
+			speed = min(GameManager.current_round * 50, 200)
+		5:
+			sprite.play("boss_5")
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
+			shield = max_shield
+			speed = min(GameManager.current_round * 50, 200)
+		_:
+			sprite.play("boss_5")
+			max_shield = GameManager.current_round * 10
+			cooldown_bullet = 0.5 / GameManager.current_round
+			shield = max_shield
+			speed = min(GameManager.current_round * 50, 200)
