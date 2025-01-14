@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://chok0fgcl18xq"]
+[gd_scene load_steps=74 format=3 uid="uid://cf8pa80ukyq4y"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_vlte7"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="2_5fwp5"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cb6mqjjisltvn" path="res://sprites/boss/Kla'ed/Destruction/PNGs/boss_5_destruction.png" id="11_j4giv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upi1x"]
-size = Vector2(14.4, 17.6)
+size = Vector2(14.4, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mang5"]
 atlas = ExtResource("3_olnlt")
@@ -488,11 +488,11 @@ base_position = Vector2(600, 400)
 bullet_scene = ExtResource("2_5fwp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.43051e-06, -7)
+position = Vector2(4.76837e-07, -1)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_upi1x")
 one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_blal3")
-animation = &"boss_3_destruction"
+animation = &"boss_5"
