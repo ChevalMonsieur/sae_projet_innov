@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=14 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
@@ -22,6 +22,12 @@ b = Vector2(800, 0)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_557kd"]
 a = Vector2(0, 800)
 b = Vector2(800, 800)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yx51"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20kso"]
+bg_color = Color(0.8, 0, 0.294118, 1)
 
 [node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "bullets")]
 script = ExtResource("1_g1kg4")
@@ -60,7 +66,7 @@ shape = SubResource("SegmentShape2D_557kd")
 [node name="camera" type="Camera2D" parent="."]
 offset = Vector2(400, 400)
 
-[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "death_container", "death_count_label")]
+[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "boss_health_bar", "death_container", "death_count_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -68,6 +74,7 @@ offset_bottom = 40.0
 script = ExtResource("5_eor4a")
 heart_container = NodePath("heart_container")
 heart_scene = ExtResource("6_6vr0k")
+boss_health_bar = NodePath("../boss/bossLifeBar")
 death_container = NodePath("death_container")
 skull_scene = ExtResource("7_0qywr")
 death_count_label = NodePath("death_count")
@@ -100,3 +107,14 @@ base_position = Vector2(200, 400)
 
 [node name="boss" parent="." instance=ExtResource("3_i0hx4")]
 position = Vector2(498, 411)
+
+[node name="bossLifeBar" type="ProgressBar" parent="boss"]
+offset_left = -94.0
+offset_top = -68.0
+offset_right = 91.0
+offset_bottom = -56.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7yx51")
+theme_override_styles/fill = SubResource("StyleBoxFlat_20kso")
+max_value = 5.0
+value = 5.0
+show_percentage = false

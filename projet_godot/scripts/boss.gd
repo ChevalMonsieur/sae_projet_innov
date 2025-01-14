@@ -70,6 +70,7 @@ func manage_shoot(delta: float) -> void:
 func lose_shield_point() -> void:
 	print("lose shield point" + str(shield))
 	shield -= 1
+	GameManager.instance.ui.update_boss_health_bar(shield)
 	
 	if shield < 0:
 		GameManager.current_state = GameManager.STATE.DEATH_AI

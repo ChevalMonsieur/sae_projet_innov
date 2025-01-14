@@ -6,6 +6,8 @@ var current_shield : int = max_shield
 
 @export var heart_container: HBoxContainer
 @export var heart_scene : PackedScene
+@export var boss_health_bar: ProgressBar
+
 
 @export var death_container: HBoxContainer
 @export var skull_scene : PackedScene
@@ -58,3 +60,15 @@ func update_death_label(is_label_visible: bool = true) -> void:
 				skull_sprite.position.x += 630
 				skull_sprite.position.y += 20
 				skull_sprite.play("skull")
+				
+func update_boss_health_bar(health: int, max_health: int = -1) -> void:
+	if boss_health_bar:
+		# Met à jour la valeur maximale si spécifiée
+		if max_health > 0:
+			boss_health_bar.max_value = max_health
+		
+		# S'assure que la valeur est dans les limites valides
+		boss_health_bar.value = clamp(health, 0, boss_health_bar.max_value)
+		
+		# Montre ou cache la barre selon la situation
+		boss_health_bar.visible = health > 0
