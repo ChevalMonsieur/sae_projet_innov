@@ -36,3 +36,5 @@ func _process(_delta: float) -> void:
 			current_state = STATE.PAUSE
 		else: 
 			current_state = state_before_pause
+	if find_child("bullets").get_child(0) != null and int(Time.get_unix_time_from_system()) % 10 == 0:
+		print(find_child("bullets").get_child(0).position)

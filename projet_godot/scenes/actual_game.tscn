@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="Script" path="res://scenes/node.gd" id="2_qlvaf"]
+[ext_resource type="Script" path="res://scripts/node.gd" id="2_qlvaf"]
 [ext_resource type="PackedScene" uid="uid://cf8pa80ukyq4y" path="res://scenes/boss.tscn" id="3_i0hx4"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_eor4a"]
 [ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="6_6vr0k"]

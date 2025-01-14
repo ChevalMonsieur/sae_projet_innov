@@ -1,28 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://oxy835wa6wcb"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_jckeb"]
+[ext_resource type="Shader" path="res://scripts/bullet.gdshader" id="1_oqe7b"]
 
-[sub_resource type="Gradient" id="Gradient_g5lwy"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1pg4a"]
-gradient = SubResource("Gradient_g5lwy")
-width = 16
-height = 16
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.2)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kodrx"]
+shader = ExtResource("1_oqe7b")
+shader_parameter/node_position = null
+shader_parameter/definition = Vector2(800, 800)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm6om"]
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_jckeb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_1pg4a")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("ShaderMaterial_kodrx")
 shape = SubResource("CircleShape2D_wm6om")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
