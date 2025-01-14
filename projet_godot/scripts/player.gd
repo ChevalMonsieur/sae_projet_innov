@@ -50,6 +50,7 @@ func lose_shield_point() -> void:
 	if shield < 0:
 		death_count += 1
 		GameManager.instance.ui.update_death_label()
+		GameManager.instance.show_game_over()
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
 	else:
 		GameManager.instance.ui.update_hearts()

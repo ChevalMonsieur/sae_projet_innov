@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2te06qwdlp41"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_tqyc1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqecs"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("game_over_label", "current_level_label", "total_levels_label", "restart_label", "boss_health_bar")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tqyc1")
+game_over_label = NodePath("gameOver")
+current_level_label = NodePath("currentLevel")
+total_levels_label = NodePath("totalLevelPassed")
+restart_label = NodePath("restart")
+boss_health_bar = NodePath("bossLifeBar")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 851.0
+offset_bottom = 837.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lqecs")
+
+[node name="gameOver" type="Label" parent="."]
+layout_mode = 2
+offset_left = 235.0
+offset_top = 159.0
+offset_right = 562.0
+offset_bottom = 375.0
+scale = Vector2(1.5, 1.5)
+horizontal_alignment = 1
+
+[node name="currentLevel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 161.0
+offset_top = 461.0
+offset_right = 290.0
+offset_bottom = 516.0
+
+[node name="totalLevelPassed" type="Label" parent="."]
+offset_left = 513.0
+offset_top = 461.0
+offset_right = 642.0
+offset_bottom = 516.0
+
+[node name="restart" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 654.0
+offset_right = 767.0
+offset_bottom = 751.0
+horizontal_alignment = 1
+
+[node name="bossLifeBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 563.0
+offset_right = 551.0
+offset_bottom = 608.0
