@@ -9,7 +9,6 @@ class_name Boss
 @export var max_phases: int = 5
 
 @onready var sprite = $AnimatedSprite2D
-@onready var player = get_node("../player")
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
@@ -50,7 +49,7 @@ func check_movement() -> void:
 	move_and_slide()
 
 func check_rotation() -> void:
-	var player_position = player.global_position
+	var player_position = GameManager.instance.player.global_position
 	var direction = player_position - global_position
 	rotation = direction.angle() + PI/2
 	
@@ -65,8 +64,8 @@ func manage_shoot(delta: float) -> void:
 		print(self)
 		bullet.creator = self
 		bullet.position = position
-		bullet.direction = (player.global_position - position).normalized()
-		$"../bullets".add_child(bullet)
+		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
+		GameManager.instance.bullets.add_child(bullet)
 
 func lose_shield_point() -> void:
 	print("lose shield point" + str(shield))
