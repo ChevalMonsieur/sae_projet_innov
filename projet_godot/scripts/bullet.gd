@@ -16,4 +16,5 @@ func _physics_process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player or body is Boss) and body != creator:
 		body.lose_shield_point()
+		creator.reward_ai(2)
 		queue_free()

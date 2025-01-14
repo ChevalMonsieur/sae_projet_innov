@@ -3,8 +3,10 @@ class_name GameManager
 
 enum STATE {STARTING, IN_GAME, PAUSE, DEATH_PLAYER, DEATH_AI, DEATH_AI_ANIM, ENDED}
 
+@export var training: bool
 @export var player: Player
 @export var boss: Boss
+@export var boss2: Boss
 @export var ui: UI
 @export var bullets: Node
 
@@ -25,7 +27,10 @@ func _ready() -> void:
 	
 static func new_round() -> void:
 	current_round += 1
-	GameManager.instance.player.new_round()
+	if instance.training:
+		GameManager.instance.boss2.new_round()
+	else:
+		GameManager.instance.player.new_round()
 	GameManager.instance.boss.new_round()
 	for bullet in GameManager.instance.bullets.get_children():
 		bullet.queue_free()

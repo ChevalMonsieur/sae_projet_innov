@@ -27,6 +27,7 @@ func _ready() -> void:
 	ai_controller.init(self)
 
 func _physics_process(delta):
+	reward_ai(-delta)
 	if ai_controller.needs_reset:
 		ai_controller.reset()
 		return
@@ -58,15 +59,18 @@ func check_movement() -> void:
 		if (Input.is_key_pressed(KEY_RIGHT)): velocity.x += 1
 	else: 
 		velocity = ai_controller.move_action
-		print("move_input: " + str(velocity))
+		# print("move_input: " + str(velocity))
 	
 	velocity = velocity.normalized() * speed
 	move_and_slide()
 
 func check_rotation() -> void:
-	var player_position = GameManager.instance.player.global_position
-	var direction = player_position - global_position
-	sprite.rotation = direction.angle() + PI/2
+	if ai_controller.heuristic == "human":
+		var player_position = GameManager.instance.player.global_position
+		var direction = player_position - global_position
+		sprite.rotation = direction.angle() + PI/2
+	else: 
+		sprite.rotation = ai_controller.shoot_direction_action.angle() + PI/2
 
 func manage_shoot(delta: float) -> void:
 	timer_bullet -= delta
@@ -75,21 +79,25 @@ func manage_shoot(delta: float) -> void:
 		timer_bullet += cooldown_bullet
 		
 		var bullet = bullet_scene.instantiate()
-		print(self)
+		#print(self)
 		bullet.creator = self
 		bullet.position = position
-		print(ai_controller.heuristic)
+		#print(ai_controller.heuristic)
 		if ai_controller.heuristic == "human": 
 			bullet.direction = (GameManager.instance.player.global_position - position).normalized()
 		else:
 			bullet.direction = ai_controller.shoot_direction_action
-			print("shoot_direction_input: " + str(bullet.direction))
+			#print("shoot_direction_input: " + str(bullet.direction))
 		GameManager.instance.bullets.add_child(bullet)
 
-func lose_shield_point() -> void:
-	print("lose shield point" + str(shield))
+func lose_shield_point(bullet: bool = true) -> void:
+	var label: Label = find_child("Label")
+	label.text = "shield: " + str(shield)
+	#print("lose shield point" + str(shield))
 	shield -= 1
-	reward_ai(-1)
+	
+	if bullet: reward_ai(-1)
+	else: reward_ai(-5)
 	
 	if shield < 0:
 		reward_ai(-10)
@@ -101,6 +109,15 @@ func reward_ai(amount: float) -> void:
 	ai_controller.reward += amount
 
 func new_round() -> void:
+	if GameManager.instance.training:
+		GameManager.current_round = 1
+		max_shield = 10
+		cooldown_bullet = .5
+		shield = max_shield
+		speed = 50
+		position = Vector2(randi_range(100, 700), randi_range(100, 700))
+		pass
+	
 	sprite.play("idle")
 	match GameManager.current_round:
 		1:

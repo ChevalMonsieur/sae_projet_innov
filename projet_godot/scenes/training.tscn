@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dku7j6fuam1t0"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_0c5q5"]
+[ext_resource type="Script" path="res://scripts/game_manager_setup.gd" id="1_yql7p"]
+[ext_resource type="PackedScene" uid="uid://cs6ivonmlvy43" path="res://scenes/boss.tscn" id="2_g6jgk"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="3_ds2fa"]
+[ext_resource type="PackedScene" uid="uid://bwlq74vacrcuc" path="res://scenes/wall.tscn" id="3_eeq0w"]
+
+[node name="Training" type="Node2D" node_paths=PackedStringArray("boss", "boss2", "bullets")]
+script = ExtResource("1_0c5q5")
+training = true
+boss = NodePath("boss")
+boss2 = NodePath("boss2")
+bullets = NodePath("bullets")
+
+[node name="game_manager_setup" type="Node" parent="."]
+script = ExtResource("1_yql7p")
+
+[node name="bullets" type="Node" parent="."]
+
+[node name="walls" type="Node" parent="."]
+
+[node name="wall" parent="walls" instance=ExtResource("3_eeq0w")]
+
+[node name="wall2" parent="walls" instance=ExtResource("3_eeq0w")]
+position = Vector2(800, 0)
+
+[node name="wall3" parent="walls" instance=ExtResource("3_eeq0w")]
+rotation = -1.5708
+
+[node name="wall4" parent="walls" instance=ExtResource("3_eeq0w")]
+position = Vector2(0, 800)
+rotation = -1.5708
+
+[node name="boss" parent="." instance=ExtResource("2_g6jgk")]
+position = Vector2(548, 447)
+
+[node name="Label" type="Label" parent="boss"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="boss2" parent="." instance=ExtResource("2_g6jgk")]
+position = Vector2(198, 418)
+
+[node name="Label" type="Label" parent="boss2"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("3_ds2fa")
+speed_up = 100.0
