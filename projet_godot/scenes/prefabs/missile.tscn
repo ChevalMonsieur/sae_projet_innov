@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://nnqmex6yeofg"]
+
+[ext_resource type="Texture2D" uid="uid://dag1vi357jdw7" path="res://sprites/player/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="1_2fuko"]
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_4w5sj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6in2"]
+atlas = ExtResource("1_2fuko")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3qwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6in2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pwfcs"]
+radius = 8.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4w5sj")
+
+[node name="missile" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, -1)
+sprite_frames = SubResource("SpriteFrames_i3qwh")
+frame_progress = 0.227059
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pwfcs")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://chok0fgcl18xq"]
+[gd_scene load_steps=75 format=3 uid="uid://chok0fgcl18xq"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_vlte7"]
 [ext_resource type="PackedScene" uid="uid://oxy835wa6wcb" path="res://scenes/bullet.tscn" id="2_5fwp5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://byp67nhto8ejt" path="res://sprites/boss/Kla'ed/Destruction/PNGs/boss_4_destruction.png" id="9_smy5x"]
 [ext_resource type="Texture2D" uid="uid://ddmntw1hv6ufj" path="res://sprites/boss/Kla'ed/Base/PNGs/boss_5.png" id="10_a4wa0"]
 [ext_resource type="Texture2D" uid="uid://cb6mqjjisltvn" path="res://sprites/boss/Kla'ed/Destruction/PNGs/boss_5_destruction.png" id="11_j4giv"]
+[ext_resource type="PackedScene" uid="uid://l7vykl8fsem5" path="res://scenes/prefabs/lance_missile.tscn" id="13_kybio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upi1x"]
 size = Vector2(14.4, 20)
@@ -495,4 +496,10 @@ one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_blal3")
-animation = &"boss_5"
+animation = &"boss_1"
+
+[node name="lance_missile" parent="." instance=ExtResource("13_kybio")]
+position = Vector2(-11, -10)
+
+[node name="lance_missile2" parent="." instance=ExtResource("13_kybio")]
+position = Vector2(10, -10)

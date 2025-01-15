@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://l7vykl8fsem5"]
+
+[ext_resource type="Script" path="res://scripts/lance_missile.gd" id="1_nt61m"]
+[ext_resource type="PackedScene" uid="uid://nnqmex6yeofg" path="res://scenes/prefabs/missile.tscn" id="2_1ndh3"]
+
+[node name="lance_missile" type="Node2D"]
+script = ExtResource("1_nt61m")
+timer_cooldown = 3.0
+speed = 600.0
+missile_scene = ExtResource("2_1ndh3")

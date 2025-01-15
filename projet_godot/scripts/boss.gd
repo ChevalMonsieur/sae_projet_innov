@@ -71,11 +71,10 @@ func manage_shoot(delta: float) -> void:
 		timer_bullet += cooldown_bullet
 		
 		var bullet = bullet_scene.instantiate()
-		print(self)
 		bullet.creator = self
 		bullet.position = position
 		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
-		GameManager.instance.bullets.add_child(bullet)
+		GameManager.instance.projectiles.add_child(bullet)
 
 func lose_shield_point() -> void:
 	print("lose shield point" + str(shield))

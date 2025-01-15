@@ -51,7 +51,7 @@ func manage_shoot(delta: float) -> void:
 		bullet.position = position
 		bullet.direction = (get_viewport().get_mouse_position() - position).normalized()
 		
-		$"../bullets".add_child(bullet)
+		GameManager.instance.projectiles.add_child(bullet)
 
 func lose_shield_point() -> void:
 	shield -= 1

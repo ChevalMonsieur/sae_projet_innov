@@ -49,17 +49,17 @@ cache/0/72/0/underline_position = 0.0
 cache/0/72/0/underline_thickness = 0.0
 cache/0/72/0/scale = 1.0
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "bullets")]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "projectiles")]
 script = ExtResource("1_g1kg4")
 player = NodePath("player")
 boss = NodePath("boss")
 ui = NodePath("ui")
-bullets = NodePath("bullets")
+projectiles = NodePath("projectiles")
 
 [node name="game_manager_setup" type="Node" parent="."]
 script = ExtResource("2_k0wto")
 
-[node name="bullets" type="Node" parent="."]
+[node name="projectiles" type="Node" parent="."]
 
 [node name="walls" type="Node" parent="."]
 
@@ -122,9 +122,6 @@ offset_bottom = 40.0
 [node name="player" parent="." instance=ExtResource("2_5lm4u")]
 position = Vector2(200, 400)
 base_position = Vector2(200, 400)
-cooldown_bullet = null
-max_shield = null
-death_count = null
 
 [node name="boss" parent="." instance=ExtResource("3_8sxf3")]
 position = Vector2(498, 411)
