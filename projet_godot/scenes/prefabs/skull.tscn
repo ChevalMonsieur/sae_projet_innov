@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cho1l78ac8p61"]
+
+[ext_resource type="Texture2D" uid="uid://cd176g8a632af" path="res://sprites/Skull&Bones - FrodoUndead.png" id="1_5dave"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrsxo"]
+atlas = ExtResource("1_5dave")
+region = Rect2(18, 0, 70, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pptnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrsxo")
+}],
+"loop": true,
+"name": &"skull",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 11)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_pptnj")
+animation = &"skull"
