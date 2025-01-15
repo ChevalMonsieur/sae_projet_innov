@@ -37,6 +37,13 @@ func _physics_process(delta):
 		if sprite.frame == 22:
 			GameManager.instance.new_round()
 			GameManager.current_state = GameManager.STATE.IN_GAME
+			
+func _on_animation_finished():
+	print("Animation finished:", sprite.animation)
+	print("Current state:", GameManager.current_state)
+	if GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
+		print("Starting new round")
+		GameManager.instance.new_round()
 
 
 func check_movement() -> void:
@@ -52,7 +59,6 @@ func check_movement() -> void:
 
 func check_rotation() -> void:
 	var player_position = GameManager.instance.player.global_position
-	var player_position = GameManager.instance.player.global_position
 	var direction = player_position - global_position
 	rotation = direction.angle() + PI/2
 	
@@ -67,8 +73,6 @@ func manage_shoot(delta: float) -> void:
 		print(self)
 		bullet.creator = self
 		bullet.position = position
-		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
-		GameManager.instance.bullets.add_child(bullet)
 		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
 		GameManager.instance.bullets.add_child(bullet)
 

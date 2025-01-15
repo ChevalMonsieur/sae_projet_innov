@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=18 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
-[ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
+[ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
 [ext_resource type="Script" path="res://scripts/node.gd" id="2_k0wto"]
 [ext_resource type="PackedScene" uid="uid://chok0fgcl18xq" path="res://scenes/boss.tscn" id="3_8sxf3"]
 [ext_resource type="Texture2D" uid="uid://mmvjcrup7170" path="res://sprites/background/background_1.jpg" id="4_47hfl"]
@@ -25,6 +25,12 @@ b = Vector2(800, 0)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_557kd"]
 a = Vector2(0, 800)
 b = Vector2(800, 800)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdhhv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ft56e"]
+bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="FontFile" id="FontFile_1biq4"]
 cache/0/16/0/ascent = 0.0
@@ -52,9 +58,6 @@ bullets = NodePath("bullets")
 
 [node name="game_manager_setup" type="Node" parent="."]
 script = ExtResource("2_k0wto")
-
-[node name="game_manager_setup" type="Node" parent="."]
-script = ExtResource("2_qlvaf")
 
 [node name="bullets" type="Node" parent="."]
 
@@ -90,49 +93,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_eor4a")
 heart_container = NodePath("heart_container")
-heart_scene = ExtResource("6_6vr0k")
-boss_health_bar = NodePath("../boss/bossLifeBar")
-death_container = NodePath("death_container")
-skull_scene = ExtResource("7_0qywr")
-death_count_label = NodePath("death_count")
-
-[node name="heart_container" type="HBoxContainer" parent="ui"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AnimatedSprite2D" parent="ui/heart_container" instance=ExtResource("6_6vr0k")]
-
-[node name="death_count" type="Label" parent="ui"]
-layout_mode = 2
-offset_left = 677.0
-offset_top = 20.0
-offset_right = 718.0
-offset_bottom = 43.0
-text = "BLEH"
-
-[node name="death_container" type="HBoxContainer" parent="ui"]
-layout_mode = 2
-offset_bottom = 40.0
-
-[node name="player" parent="." instance=ExtResource("2_5lm4u")]
-position = Vector2(200, 400)
-base_position = Vector2(200, 400)
-cooldown_bullet = null
-max_shield = null
-death_count = null
-
-[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "death_container", "death_count_label")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_eor4a")
-heart_container = NodePath("heart_container")
 heart_scene = ExtResource("5_jrg31")
+boss_health_bar = NodePath("../boss/bossLifeBar")
 death_container = NodePath("death_container")
 skull_scene = ExtResource("6_uniid")
 death_count_label = NodePath("death_count")
@@ -157,7 +119,14 @@ text = "BLEH"
 layout_mode = 2
 offset_bottom = 40.0
 
-[node name="boss" parent="." instance=ExtResource("3_i0hx4")]
+[node name="player" parent="." instance=ExtResource("2_5lm4u")]
+position = Vector2(200, 400)
+base_position = Vector2(200, 400)
+cooldown_bullet = null
+max_shield = null
+death_count = null
+
+[node name="boss" parent="." instance=ExtResource("3_8sxf3")]
 position = Vector2(498, 411)
 
 [node name="bossLifeBar" type="ProgressBar" parent="boss"]
@@ -165,8 +134,8 @@ offset_left = -94.0
 offset_top = -68.0
 offset_right = 91.0
 offset_bottom = -56.0
-theme_override_styles/background = SubResource("StyleBoxFlat_7yx51")
-theme_override_styles/fill = SubResource("StyleBoxFlat_20kso")
+theme_override_styles/background = SubResource("StyleBoxFlat_tdhhv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ft56e")
 max_value = 5.0
 value = 5.0
 show_percentage = false
@@ -193,6 +162,3 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Next_round" parent="." instance=ExtResource("6_xlbb8")]
-
-[node name="Node2D" parent="." instance=ExtResource("6_uniid")]
-position = Vector2(1245, 13)

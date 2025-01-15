@@ -63,14 +63,6 @@ func _on_countdown_finished():
 func _on_next_round_display_finished():
 	print("start countdown")
 	$countdown.start_countdown()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		if current_state != STATE.PAUSE:
-			state_before_pause = current_state
-			current_state = STATE.PAUSE
-		else: 
-			current_state = state_before_pause
 			
 func show_game_over():
 	var boss_health = boss.shield
