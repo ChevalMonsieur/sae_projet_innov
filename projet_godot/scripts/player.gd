@@ -56,9 +56,17 @@ func manage_shoot(delta: float) -> void:
 func lose_shield_point() -> void:
 	shield -= 1
 	GameManager.instance.ui.current_shield = shield
+	GameManager.instance.ui.update_hearts()
 	print("Shield remaining: ", shield)
 	
 	if shield == 0:
+		var timer = Timer.new()
+		add_child(timer)
+		timer.one_shot = true
+		timer.wait_time = 0.1
+		timer.start()
+		await timer.timeout
+		timer.queue_free()
 		death_count += 1
 		GameManager.total_deaths += 1
 		GameManager.instance.ui.update_death_label()
