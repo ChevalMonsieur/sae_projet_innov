@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="Script" path="res://scripts/node.gd" id="2_k0wto"]
+[ext_resource type="Script" path="res://scripts/game_manager_setup.gd" id="2_k0wto"]
 [ext_resource type="PackedScene" uid="uid://chok0fgcl18xq" path="res://scenes/boss.tscn" id="3_8sxf3"]
 [ext_resource type="Texture2D" uid="uid://mmvjcrup7170" path="res://sprites/background/background_1.jpg" id="4_47hfl"]
 [ext_resource type="Script" path="res://scripts/countdown.gd" id="5_04ypf"]
