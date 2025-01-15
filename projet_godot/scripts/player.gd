@@ -1,20 +1,17 @@
 extends CharacterBody2D
-
 class_name Player
+
 @export var speed: float = 5
 @export var base_position: Vector2 = Vector2.ZERO
 @export var bullet_scene: Resource
 @export var cooldown_bullet: float = .2
 @export var max_shield: int = 5
+@export var death_count: int = 0
 
 @onready var sprite = $AnimatedSprite2D
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
-
-func new_round() -> void:
-	position = base_position
-	shield = max_shield
 
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
@@ -52,8 +49,18 @@ func manage_shoot(delta: float) -> void:
 		$"../bullets".add_child(bullet)
 
 func lose_shield_point() -> void:
-	print("lose shield point")
 	shield -= 1
+	GameManager.instance.ui.current_shield = shield
+	print("Shield remaining: ", shield)
+	
 	if shield < 0:
-		print("death")
+		death_count += 1
+		GameManager.instance.ui.update_death_label()
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
+	else:
+		GameManager.instance.ui.update_hearts()
+		print("Hearts updated")
+		
+func new_round() -> void:
+	position = base_position
+	shield = max_shield

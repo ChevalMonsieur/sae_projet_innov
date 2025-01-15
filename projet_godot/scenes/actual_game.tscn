@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=16 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
-[ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
-[ext_resource type="PackedScene" uid="uid://cf8pa80ukyq4y" path="res://scenes/boss.tscn" id="3_8sxf3"]
+[ext_resource type="PackedScene" uid="uid://dmvvvafdjbyh" path="res://scenes/player.tscn" id="2_5lm4u"]
+[ext_resource type="Script" path="res://scripts/node.gd" id="2_k0wto"]
+[ext_resource type="PackedScene" uid="uid://chok0fgcl18xq" path="res://scenes/boss.tscn" id="3_8sxf3"]
 [ext_resource type="Texture2D" uid="uid://mmvjcrup7170" path="res://sprites/background/background_1.jpg" id="4_47hfl"]
 [ext_resource type="Script" path="res://scripts/countdown.gd" id="5_04ypf"]
-[ext_resource type="PackedScene" path="res://scenes/next_round.tscn" id="6_xlbb8"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="5_eor4a"]
+[ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="5_jrg31"]
+[ext_resource type="PackedScene" uid="uid://cho1l78ac8p61" path="res://scenes/prefabs/skull.tscn" id="6_uniid"]
+[ext_resource type="PackedScene" uid="uid://buswowhxdy56w" path="res://scenes/next_round.tscn" id="6_xlbb8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
 a = Vector2(0, 800)
@@ -39,8 +43,15 @@ cache/0/72/0/underline_position = 0.0
 cache/0/72/0/underline_thickness = 0.0
 cache/0/72/0/scale = 1.0
 
-[node name="game_manager" type="Node2D"]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "bullets")]
 script = ExtResource("1_g1kg4")
+player = NodePath("player")
+boss = NodePath("boss")
+ui = NodePath("ui")
+bullets = NodePath("bullets")
+
+[node name="game_manager_setup" type="Node" parent="."]
+script = ExtResource("2_k0wto")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(400, 400)
@@ -72,6 +83,41 @@ shape = SubResource("SegmentShape2D_557kd")
 [node name="player" parent="." instance=ExtResource("2_5lm4u")]
 position = Vector2(200, 400)
 base_position = Vector2(200, 400)
+cooldown_bullet = null
+max_shield = null
+death_count = null
+
+[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "death_container", "death_count_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_eor4a")
+heart_container = NodePath("heart_container")
+heart_scene = ExtResource("5_jrg31")
+death_container = NodePath("death_container")
+skull_scene = ExtResource("6_uniid")
+death_count_label = NodePath("death_count")
+
+[node name="heart_container" type="HBoxContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="death_count" type="Label" parent="ui"]
+layout_mode = 2
+offset_left = 677.0
+offset_top = 20.0
+offset_right = 718.0
+offset_bottom = 43.0
+text = "BLEH"
+
+[node name="death_container" type="HBoxContainer" parent="ui"]
+layout_mode = 2
+offset_bottom = 40.0
 
 [node name="boss" parent="." instance=ExtResource("3_8sxf3")]
 position = Vector2(552, 397)
@@ -98,3 +144,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Next_round" parent="." instance=ExtResource("6_xlbb8")]
+
+[node name="Node2D" parent="." instance=ExtResource("6_uniid")]
+position = Vector2(1245, 13)
