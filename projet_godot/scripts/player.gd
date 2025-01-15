@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+
 @export var speed: float = 5
 @export var base_position: Vector2 = Vector2.ZERO
 @export var bullet_scene: Resource
@@ -12,6 +13,10 @@ class_name Player
 
 var timer_bullet: float = cooldown_bullet
 var shield: int = max_shield
+
+func _ready() -> void:
+	print(name)
+	death_count = GameManager.total_deaths
 
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
@@ -55,12 +60,16 @@ func lose_shield_point() -> void:
 	
 	if shield < 0:
 		death_count += 1
+		GameManager.total_deaths += 1
 		GameManager.instance.ui.update_death_label()
+		GameManager.instance.show_game_over()
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
 	else:
 		GameManager.instance.ui.update_hearts()
-		print("Hearts updated")
-		
+		print("Hearts updated")  # Debug
+
 func new_round() -> void:
 	position = base_position
 	shield = max_shield
+	GameManager.instance.ui.current_shield = max_shield
+	GameManager.instance.ui.update_hearts()

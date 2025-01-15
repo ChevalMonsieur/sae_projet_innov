@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bft15v7w4jxao"
-path="res://.godot/imported/Skull&Bones - FrodoUndead.png-15b9d3683ae0c4d87c1aada3b747bbd4.ctex"
+uid="uid://bqemqimwxb34a"
+path="res://.godot/imported/Kla'ed - Ships Preview.png-f6b124150fa0920368f71cf419511f3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Skull&Bones - FrodoUndead.png"
-dest_files=["res://.godot/imported/Skull&Bones - FrodoUndead.png-15b9d3683ae0c4d87c1aada3b747bbd4.ctex"]
+source_file="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed - Ships Preview.png"
+dest_files=["res://.godot/imported/Kla'ed - Ships Preview.png-f6b124150fa0920368f71cf419511f3d.ctex"]
 
 [params]
 

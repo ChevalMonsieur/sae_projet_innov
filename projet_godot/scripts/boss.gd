@@ -1,12 +1,16 @@
 extends CharacterBody2D
 class_name Boss
 
-@export var speed: float = 5
 @export var base_position: Vector2 = Vector2.ZERO
+
+@export var speed: float = 5
+
 @export var bullet_scene: PackedScene
 @export var cooldown_bullet: float = .3
+
 @export var max_shield: int = 5
 @export var max_phases: int = 5
+
 
 @onready var sprite = $AnimatedSprite2D
 
@@ -27,14 +31,12 @@ func _physics_process(delta):
 		if GameManager.current_round <= GameManager.max_round:
 			GameManager.current_state = GameManager.STATE.DEATH_AI_ANIM
 		else:
-			GameManager.current_state = GameManager.STATE.ENDED
-
-func _on_animation_finished():
-	print("Animation finished:", sprite.animation)
-	print("Current state:", GameManager.current_state)
-	if GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
-		print("Starting new round")
-		GameManager.instance.new_round()
+			GameManager.current_round = GameManager.STATE.ENDED
+	
+	elif GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
+		if sprite.frame == 22:
+			GameManager.instance.new_round()
+			GameManager.current_state = GameManager.STATE.IN_GAME
 
 
 func check_movement() -> void:
@@ -49,6 +51,7 @@ func check_movement() -> void:
 	move_and_slide()
 
 func check_rotation() -> void:
+	var player_position = GameManager.instance.player.global_position
 	var player_position = GameManager.instance.player.global_position
 	var direction = player_position - global_position
 	rotation = direction.angle() + PI/2
@@ -66,10 +69,13 @@ func manage_shoot(delta: float) -> void:
 		bullet.position = position
 		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
 		GameManager.instance.bullets.add_child(bullet)
+		bullet.direction = (GameManager.instance.player.global_position - position).normalized()
+		GameManager.instance.bullets.add_child(bullet)
 
 func lose_shield_point() -> void:
 	print("lose shield point" + str(shield))
 	shield -= 1
+	GameManager.instance.ui.update_boss_health_bar(shield)
 	
 	if shield < 0:
 		GameManager.current_state = GameManager.STATE.DEATH_AI

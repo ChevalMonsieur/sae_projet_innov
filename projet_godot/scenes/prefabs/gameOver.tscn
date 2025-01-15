@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2te06qwdlp41"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_tqyc1"]
+[ext_resource type="FontFile" uid="uid://dupbuqeuyvdgd" path="res://font/LeagueSpartan-Bold.otf" id="2_0xqnm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqecs"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7esbo"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8ron"]
+bg_color = Color(0.8, 0, 0.294118, 1)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("game_over_label", "current_level_label", "total_levels_label", "restart_label", "quit", "boss_health_bar", "boss_life_remaining")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tqyc1")
+game_over_label = NodePath("gameOver")
+current_level_label = NodePath("currentLevel")
+total_levels_label = NodePath("totalLevelPassed")
+restart_label = NodePath("restart")
+quit = NodePath("quit")
+boss_health_bar = NodePath("bossLifeBar")
+boss_life_remaining = NodePath("boss_life_remaining")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 851.0
+offset_bottom = 837.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lqecs")
+
+[node name="gameOver" type="Label" parent="."]
+layout_mode = 2
+offset_left = 244.0
+offset_top = 203.0
+offset_right = 1531.0
+offset_bottom = 828.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("2_0xqnm")
+theme_override_font_sizes/font_size = 500
+text = "BLEH"
+horizontal_alignment = 1
+
+[node name="currentLevel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 196.0
+offset_top = 340.0
+offset_right = 325.0
+offset_bottom = 395.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+text = "BLEH"
+
+[node name="totalLevelPassed" type="Label" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 340.0
+offset_right = 586.0
+offset_bottom = 395.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+text = "BLEH"
+
+[node name="restart" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 610.0
+offset_right = 770.0
+offset_bottom = 707.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+text = "BLEH"
+horizontal_alignment = 1
+
+[node name="quit" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 660.0
+offset_right = 770.0
+offset_bottom = 757.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+text = "BLEH"
+horizontal_alignment = 1
+
+[node name="bossLifeBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 466.0
+offset_right = 541.0
+offset_bottom = 511.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+theme_override_styles/background = SubResource("StyleBoxFlat_7esbo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o8ron")
+max_value = 5.0
+value = 5.0
+
+[node name="boss_life_remaining" type="Label" parent="."]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 428.0
+offset_right = 446.0
+offset_bottom = 483.0
+theme_override_fonts/font = ExtResource("2_0xqnm")
+text = "BLEH"
