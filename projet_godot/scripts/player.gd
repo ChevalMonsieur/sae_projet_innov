@@ -58,7 +58,7 @@ func lose_shield_point() -> void:
 	GameManager.instance.ui.current_shield = shield
 	print("Shield remaining: ", shield)
 	
-	if shield < 0:
+	if shield == 0:
 		death_count += 1
 		GameManager.total_deaths += 1
 		GameManager.instance.ui.update_death_label()
@@ -66,7 +66,7 @@ func lose_shield_point() -> void:
 		GameManager.current_state = GameManager.STATE.DEATH_PLAYER
 	else:
 		GameManager.instance.ui.update_hearts()
-		print("Hearts updated")  # Debug
+		print("Hearts updated")
 
 func new_round() -> void:
 	position = base_position
