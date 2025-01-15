@@ -60,7 +60,8 @@ func check_movement() -> void:
 func check_rotation() -> void:
 	var player_position = GameManager.instance.player.global_position
 	var direction = player_position - global_position
-	rotation = direction.angle() + PI/2
+	get_child(0).rotation = direction.angle() + PI/2
+	get_child(1).rotation = direction.angle() + PI/2
 	
 	
 func manage_shoot(delta: float) -> void:

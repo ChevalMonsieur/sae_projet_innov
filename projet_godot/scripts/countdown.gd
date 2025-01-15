@@ -1,7 +1,7 @@
 extends Node
 
 signal countdown_finished
-var countdown_time = 5
+var countdown_time = 3
 var timer
 var go_timer 
 var is_countdown_running = false
@@ -25,7 +25,7 @@ func _ready():
 	
 func start_countdown():
 	if not is_countdown_running:
-		countdown_time = 5
+		countdown_time = 3
 		is_countdown_running = true
 		countdown_label.show()
 		countdown_label.text = str(countdown_time)
