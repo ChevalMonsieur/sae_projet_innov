@@ -39,7 +39,7 @@ func update_hearts() -> void:
 			child.play("heart_full")
 		else:
 			print("Setting heart ", i, " to empty")
-			child.play("heart_empty")
+			child.play("heart_empty") 
 		i+=1
 
 func update_death_label(is_label_visible: bool = true) -> void:
