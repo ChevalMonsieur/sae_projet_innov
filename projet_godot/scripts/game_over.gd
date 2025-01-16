@@ -36,6 +36,9 @@ func _process(_delta):
 		load_main_menu()
 
 func restart_game():
+	GameManager.current_round = 1
+	GameManager.current_state = GameManager.STATE.STARTING
+	GameManager.game_over_stats = []
 	get_tree().change_scene_to_file("res://scenes/actual_game.tscn")
 	
 func load_main_menu():

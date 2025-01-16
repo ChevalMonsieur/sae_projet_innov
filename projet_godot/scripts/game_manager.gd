@@ -27,8 +27,12 @@ func _ready() -> void:
 	$Next_round.display_finished.connect(_on_next_round_display_finished)
 	current_state = STATE.STARTING
 	instance = self
+	if boss:
+		boss.new_round()
 	if ui and player:
 		ui.update_death_label(true)
+		if boss:
+			ui.update_boss_health_bar(boss.shield, boss.max_shield)
 	
 	
 func _physics_process(delta: float) -> void:
@@ -68,5 +72,10 @@ func show_game_over():
 	var boss_health = boss.shield
 	var boss_max_health = boss.max_shield
 
-	get_tree().change_scene_to_file("res://scenes/prefabs/gameOver.tscn")
+	boss.shield = boss.max_shield
+	boss.cooldown_bullet = boss.cooldown_bullet
+	GameManager.instance.ui.update_boss_health_bar(boss.shield, boss.max_shield)
+
 	game_over_stats = [boss_health, boss_max_health]
+
+	get_tree().change_scene_to_file("res://scenes/prefabs/gameOver.tscn")

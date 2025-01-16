@@ -130,3 +130,5 @@ func new_round() -> void:
 			shield = max_shield
 			speed = min(GameManager.current_round * 50, 200)
 			find_child("CollisionShape2D").shape.size = Vector2(14.4, 20)
+	if GameManager.instance and GameManager.instance.ui:
+		GameManager.instance.ui.update_boss_health_bar(shield, max_shield)

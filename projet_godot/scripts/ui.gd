@@ -71,6 +71,5 @@ func update_boss_health_bar(health: int, max_health: int = -1) -> void:
 	if boss_health_bar:
 		if max_health > 0:
 			boss_health_bar.max_value = max_health
-			
 		boss_health_bar.value = clamp(health, 0, boss_health_bar.max_value)
 		boss_health_bar.visible = health > 0
