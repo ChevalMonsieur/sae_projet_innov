@@ -21,12 +21,10 @@ func _physics_process(delta: float) -> void:
 	direction_to_target = (target.position - position).normalized()
 	delta_direction = (current_direction.dot(direction_to_target) * 90 - 90) * -1
 	
-	print("rotation_speed: " + str(rotation_speed))
-	print("delta_direction: " + str(delta_direction))
+
 	if rotation_speed >= delta_direction:
 		current_direction = direction_to_target
 	else:
-		print("test")
 		if (current_direction.orthogonal().dot(direction_to_target) * 90 - 90) * -1 >= 90:
 			current_direction = current_direction.rotated(rotation_speed)
 		else: 
@@ -37,4 +35,10 @@ func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
 		position += current_direction * speed * delta
 	if position.x > get_viewport_rect().size.x or position.x < 0 or position.y > get_viewport_rect().size.y or position.y < 0:
+		queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if (body is Player or body is Boss) and body != creator:
+		body.lose_shield_point()
 		queue_free()

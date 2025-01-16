@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://nnqmex6yeofg"]
+[gd_scene load_steps=6 format=3 uid="uid://cqk8jv64jodsu"]
 
 [ext_resource type="Texture2D" uid="uid://dag1vi357jdw7" path="res://sprites/player/Main ship weapons/PNGs/Main ship weapon - Projectile - Rocket.png" id="1_2fuko"]
 [ext_resource type="Script" path="res://scripts/missile.gd" id="1_4w5sj"]
@@ -31,3 +31,5 @@ frame_progress = 0.227059
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pwfcs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

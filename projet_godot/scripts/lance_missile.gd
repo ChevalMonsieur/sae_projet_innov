@@ -1,4 +1,5 @@
 extends Node2D
+class_name LanceMissile
 
 @export var timer_cooldown: float = 2
 @export var speed: float = 200
@@ -21,4 +22,5 @@ func _physics_process(delta: float) -> void:
 			missile.creator = get_parent()
 			missile.position = global_position
 			missile.speed = speed
+			missile.rotation_speed = rotation_speed
 			GameManager.instance.projectiles.add_child(missile)
