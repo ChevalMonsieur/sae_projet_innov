@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if GameManager.current_state == GameManager.STATE.IN_GAME:
+
 		timer -= delta
 		if timer <= 0:
 			timer += timer_cooldown
@@ -20,6 +21,4 @@ func _physics_process(delta: float) -> void:
 			missile.creator = get_parent()
 			missile.position = global_position
 			missile.speed = speed
-			print()
-			missile.direction = (GameManager.instance.player.global_position - position).normalized()
 			GameManager.instance.projectiles.add_child(missile)

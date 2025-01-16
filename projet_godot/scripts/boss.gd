@@ -85,12 +85,15 @@ func lose_shield_point() -> void:
 		GameManager.current_state = GameManager.STATE.DEATH_AI
 		
 func new_round() -> void:
+	for child in get_children():
+		if name.contains("lance_missile"):
+			queue_free()
 	
 	match GameManager.current_round:
 		1:
 			sprite.play("boss_1")
 			max_shield = 5
-			cooldown_bullet = .5
+			cooldown_bullet = 5
 			shield = max_shield
 			speed = 50
 			find_child("CollisionShape2D").shape.size = Vector2(4.8, 4.4)
@@ -101,6 +104,10 @@ func new_round() -> void:
 			shield = max_shield
 			speed = min(GameManager.current_round * 50, 200)
 			find_child("CollisionShape2D").shape.size = Vector2(7.2, 7.8)
+			var lance_missile: PackedScene = load("res://my_scene.tscn")
+			add_child(lance_missile.instantiate())
+			add_child(lance_missile.instantiate())
+
 		3:
 			sprite.play("boss_3")
 			max_shield = GameManager.current_round * 10

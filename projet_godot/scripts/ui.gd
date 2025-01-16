@@ -8,6 +8,7 @@ var current_shield : int = max_shield
 @export var heart_scene : PackedScene
 @export var boss_health_bar: ProgressBar
 
+@export var debug: Label
 
 @export var death_container: HBoxContainer
 @export var skull_scene : PackedScene

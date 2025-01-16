@@ -6,5 +6,5 @@
 [node name="lance_missile" type="Node2D"]
 script = ExtResource("1_nt61m")
 timer_cooldown = 3.0
-speed = 600.0
+rotation_speed = 0.001
 missile_scene = ExtResource("2_1ndh3")
