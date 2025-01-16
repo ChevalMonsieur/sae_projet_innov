@@ -1,26 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://oxy835wa6wcb"]
+[gd_scene load_steps=9 format=3 uid="uid://oxy835wa6wcb"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_jckeb"]
+[ext_resource type="Texture2D" uid="uid://uhheiq8tj3m6" path="res://sprites/player/Main ship weapons/PNGs/Main ship weapon - Projectile - Auto cannon bullet.png" id="2_ujjjj"]
 
-[sub_resource type="Gradient" id="Gradient_g5lwy"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta168"]
+atlas = ExtResource("2_ujjjj")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1pg4a"]
-gradient = SubResource("Gradient_g5lwy")
-width = 16
-height = 16
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.2)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohwh5"]
+atlas = ExtResource("2_ujjjj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1y7e"]
+atlas = ExtResource("2_ujjjj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rotxt"]
+atlas = ExtResource("2_ujjjj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7iko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta168")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohwh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1y7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rotxt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm6om"]
+radius = 8.0
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_jckeb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_1pg4a")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k7iko")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wm6om")

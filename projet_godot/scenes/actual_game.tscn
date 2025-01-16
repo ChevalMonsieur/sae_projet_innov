@@ -50,17 +50,17 @@ cache/0/72/0/underline_position = 0.0
 cache/0/72/0/underline_thickness = 0.0
 cache/0/72/0/scale = 1.0
 
-[node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "bullets")]
+[node name="game_manager" type="Node2D" node_paths=PackedStringArray("player", "boss", "ui", "projectiles")]
 script = ExtResource("1_g1kg4")
 player = NodePath("player")
 boss = NodePath("boss")
 ui = NodePath("ui")
-bullets = NodePath("bullets")
+projectiles = NodePath("projectiles")
 
 [node name="game_manager_setup" type="Node" parent="."]
 script = ExtResource("2_k0wto")
 
-[node name="bullets" type="Node" parent="."]
+[node name="projectiles" type="Node" parent="."]
 
 [node name="walls" type="Node" parent="."]
 
@@ -87,7 +87,7 @@ shape = SubResource("SegmentShape2D_557kd")
 [node name="camera" type="Camera2D" parent="."]
 offset = Vector2(400, 400)
 
-[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "boss_health_bar", "death_container", "death_count_label")]
+[node name="ui" type="Control" parent="." node_paths=PackedStringArray("heart_container", "boss_health_bar", "debug", "death_container", "death_count_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -96,6 +96,7 @@ script = ExtResource("5_eor4a")
 heart_container = NodePath("heart_container")
 heart_scene = ExtResource("5_jrg31")
 boss_health_bar = NodePath("../boss/bossLifeBar")
+debug = NodePath("debug")
 death_container = NodePath("death_container")
 skull_scene = ExtResource("6_uniid")
 death_count_label = NodePath("death_count")
@@ -119,6 +120,13 @@ text = "BLEH"
 [node name="death_container" type="HBoxContainer" parent="ui"]
 layout_mode = 2
 offset_bottom = 40.0
+
+[node name="debug" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 673.0
+offset_right = 801.0
+offset_bottom = 799.0
 
 [node name="player" parent="." instance=ExtResource("2_5lm4u")]
 position = Vector2(200, 400)
