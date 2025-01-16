@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://xtdad62wdwm4"]
+
+[ext_resource type="Texture2D" uid="uid://1tod5v47w4vl" path="res://sprites/background/youwin.png" id="1_ko2va"]
+[ext_resource type="Script" path="res://scripts/win.gd" id="1_vokcf"]
+[ext_resource type="FontFile" uid="uid://dupbuqeuyvdgd" path="res://font/LeagueSpartan-Bold.otf" id="2_7pinn"]
+[ext_resource type="PackedScene" uid="uid://cho1l78ac8p61" path="res://scenes/prefabs/skull.tscn" id="4_twx7m"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("current_level_label", "total_levels_label", "quit", "total_deaths", "completion_time")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vokcf")
+current_level_label = NodePath("currentLevel")
+total_levels_label = NodePath("totalLevelPassed")
+quit = NodePath("quit")
+total_deaths = NodePath("total_deaths")
+completion_time = NodePath("total_time")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 759.0
+offset_bottom = 760.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ko2va")
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.00392157)
+
+[node name="currentLevel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 47.0
+offset_right = 161.0
+offset_bottom = 104.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7pinn")
+theme_override_font_sizes/font_size = 45
+text = "BLEH"
+
+[node name="totalLevelPassed" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 112.0
+offset_right = 161.0
+offset_bottom = 169.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7pinn")
+theme_override_font_sizes/font_size = 45
+text = "BLEH"
+
+[node name="quit" type="Label" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 646.0
+offset_right = 922.0
+offset_bottom = 834.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7pinn")
+theme_override_font_sizes/font_size = 60
+text = "BLEH"
+horizontal_alignment = 1
+
+[node name="total_deaths" type="Label" parent="."]
+layout_mode = 0
+offset_left = 501.5
+offset_top = 47.0
+offset_right = 630.5
+offset_bottom = 104.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7pinn")
+theme_override_font_sizes/font_size = 45
+text = "BLEH"
+
+[node name="Node2D" parent="." instance=ExtResource("4_twx7m")]
+position = Vector2(390, 3.8147e-06)
+scale = Vector2(5, 5)
+
+[node name="total_time" type="Label" parent="."]
+offset_left = 439.0
+offset_top = 111.0
+offset_right = 568.0
+offset_bottom = 168.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7pinn")
+theme_override_font_sizes/font_size = 45
+text = "BLEH"

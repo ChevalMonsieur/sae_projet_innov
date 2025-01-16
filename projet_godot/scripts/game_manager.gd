@@ -19,7 +19,12 @@ static var current_round: int = 1
 var starting_initialized = false 
 
 static var game_over_stats: Array = []
+static var stats_for_win_scene : Array = []
 static var total_deaths: int = 0
+
+static var game_start_time: float = 0.0
+static var game_end_time: float = 0.0
+static var total_play_time: float = 0.0
 
 func _ready() -> void:
 	$Next_round.hide()
@@ -62,6 +67,8 @@ func new_round() -> void:
 	starting_initialized = false
 	
 func _on_countdown_finished():
+	if current_round == 1:
+		game_start_time = Time.get_unix_time_from_system()
 	current_state = STATE.IN_GAME
 	
 func _on_next_round_display_finished():
@@ -79,3 +86,9 @@ func show_game_over():
 	game_over_stats = [boss_health, boss_max_health]
 
 	get_tree().change_scene_to_file("res://scenes/prefabs/gameOver.tscn")
+	
+func show_win():
+	game_end_time = Time.get_unix_time_from_system()
+	total_play_time = game_end_time - game_start_time
+	stats_for_win_scene = [current_round, max_round, total_deaths, total_play_time]
+	get_tree().change_scene_to_file("res://scenes/prefabs/win.tscn")

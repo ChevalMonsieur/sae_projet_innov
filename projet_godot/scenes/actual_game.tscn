@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctd5g0r1nj7rx"]
+[gd_scene load_steps=19 format=3 uid="uid://ctd5g0r1nj7rx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g1kg4"]
 [ext_resource type="PackedScene" uid="uid://5b4552m4jk8f" path="res://scenes/player.tscn" id="2_5lm4u"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://0ug51or2i7an" path="res://scenes/prefabs/heart.tscn" id="5_jrg31"]
 [ext_resource type="PackedScene" uid="uid://cho1l78ac8p61" path="res://scenes/prefabs/skull.tscn" id="6_uniid"]
 [ext_resource type="PackedScene" uid="uid://buswowhxdy56w" path="res://scenes/next_round.tscn" id="6_xlbb8"]
+[ext_resource type="Script" path="res://scripts/fade.gd" id="11_2m7kx"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tna4o"]
 a = Vector2(0, 800)
@@ -159,3 +160,14 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Next_round" parent="." instance=ExtResource("6_xlbb8")]
+
+[node name="fade_rect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 800.0
+offset_bottom = 801.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("11_2m7kx")

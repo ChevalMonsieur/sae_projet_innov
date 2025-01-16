@@ -33,7 +33,7 @@ func _process(_delta):
 	if Input.is_key_pressed(KEY_R):
 		restart_game()
 	elif Input.is_key_pressed(KEY_ESCAPE):
-		load_main_menu()
+		quit_game()
 
 func restart_game():
 	GameManager.current_round = 1
@@ -41,5 +41,5 @@ func restart_game():
 	GameManager.game_over_stats = []
 	get_tree().change_scene_to_file("res://scenes/actual_game.tscn")
 	
-func load_main_menu():
+func quit_game():
 	get_tree().quit()

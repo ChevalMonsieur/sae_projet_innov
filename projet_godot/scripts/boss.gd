@@ -31,7 +31,7 @@ func _physics_process(delta):
 		if GameManager.current_round <= GameManager.max_round:
 			GameManager.current_state = GameManager.STATE.DEATH_AI_ANIM
 		else:
-			GameManager.current_round = GameManager.STATE.ENDED
+			GameManager.current_state = GameManager.STATE.ENDED
 	
 	elif GameManager.current_state == GameManager.STATE.DEATH_AI_ANIM:
 		if sprite.frame == 22:
@@ -82,7 +82,7 @@ func lose_shield_point() -> void:
 	shield -= 1
 	GameManager.instance.ui.update_boss_health_bar(shield)
 	
-	if shield < 0:
+	if shield == 0:
 		GameManager.current_state = GameManager.STATE.DEATH_AI
 		
 func new_round() -> void:
