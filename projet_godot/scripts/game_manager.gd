@@ -27,9 +27,9 @@ static var game_end_time: float = 0.0
 static var total_play_time: float = 0.0
 
 func _ready() -> void:
-	$Next_round.hide()
+	$next_round.hide()
 	$countdown.countdown_finished.connect(_on_countdown_finished)
-	$Next_round.display_finished.connect(_on_next_round_display_finished)
+	$next_round.display_finished.connect(_on_next_round_display_finished)
 	current_state = STATE.STARTING
 	instance = self
 	if boss:
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		starting_initialized = true 
 		$player.new_round()
 		$boss.new_round()
-		$Next_round.show_next_round()
+		$next_round.show_next_round()
 		
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

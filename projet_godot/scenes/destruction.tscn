@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://0pyw5m84lkc"]
+
+[ext_resource type="Texture2D" path="res://sprites/Foozle_2DS0012_Void_EnemyFleet_1/Kla'ed/Destruction/PNGs/Kla'ed - Battlecruiser - Destruction.png" id="1_qbk87"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qksj"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbmm4"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpxwm"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy248"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncj1i"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7jtq"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emeac"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1niy"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88252"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8eiw"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5wsa"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyvx8"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w811x"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8um5"]
+atlas = ExtResource("1_qbk87")
+region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i65ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qksj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbmm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpxwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy248")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncj1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7jtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emeac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1niy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88252")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8eiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5wsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyvx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w811x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8um5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_bjj76"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	play(\"default\")
+
+func _process(delta: float) -> void:
+	if frame == 13:
+		GameManager.current_state = GameManager.STATE.IN_GAME
+		queue_free()
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_i65ri")
+script = SubResource("GDScript_bjj76")
