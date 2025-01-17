@@ -134,32 +134,42 @@ func new_round() -> void:
 	match GameManager.current_round:
 		1:
 			sprite.play("boss_1")
-			max_shield = 5
-			cooldown_bullet = 5
+			max_shield = 20
+			cooldown_bullet = 0.5
 			shield = max_shield
-			speed = 70
+			speed = 110
 			find_child("CollisionShape2D").shape.size = Vector2(4.8, 4.4)
+
 		2:
 			sprite.play("boss_2")
-			max_shield = GameManager.current_round * 10
+			max_shield = GameManager.current_round * 15
 			cooldown_bullet = 0.5 / GameManager.current_round
 			shield = max_shield
-			speed = 90
+			speed = 100
 			
 			find_child("CollisionShape2D").shape.size = Vector2(7.2, 7.8)
 			
 			var lance_missile_1: LanceMissile = lance_missile_scene.instantiate()
 			var lance_missile_2: LanceMissile = lance_missile_scene.instantiate()
+			var lance_missile_3: LanceMissile = lance_missile_scene.instantiate()
 			lance_missile_1.position = Vector2(-15, -1)
 			lance_missile_2.position = Vector2(15, -1)
+			lance_missile_3.position = Vector2(15, -1)
+			lance_missile_1.timer_cooldown = 0.55
+			lance_missile_2.timer_cooldown = 0.55
+			lance_missile_3.timer_cooldown = 0.55
+			lance_missile_1.rotation_speed = 0.010
+			lance_missile_2.rotation_speed = 0.010
+			lance_missile_3.rotation_speed = 0.010
 			add_child(lance_missile_1)
 			add_child(lance_missile_2)
+			add_child(lance_missile_3)
 		3:
 			sprite.play("boss_3")
-			max_shield = GameManager.current_round * 10
-			cooldown_bullet = 110
+			max_shield = GameManager.current_round * 13
+			cooldown_bullet = 5
 			shield = max_shield
-			speed = min(GameManager.current_round * 50, 200)
+			speed = min(GameManager.current_round * 50, 130)
 			
 			find_child("CollisionShape2D").shape.size = Vector2(11.2, 4.4)
 			
@@ -167,12 +177,13 @@ func new_round() -> void:
 			var lance_missile_2: LanceMissile = lance_missile_scene.instantiate()
 			lance_missile_1.position = Vector2(-26, -8)
 			lance_missile_2.position = Vector2(26, -8)
-			lance_missile_1.timer_cooldown = 1
-			lance_missile_2.timer_cooldown = 1
+			lance_missile_1.timer_cooldown = 0.5
+			lance_missile_2.timer_cooldown = 0.5
 			add_child(lance_missile_1)
 			add_child(lance_missile_2)
 		4:
 			sprite.play("boss_4")
+			cooldown_bullet = 3
 			max_shield = GameManager.current_round * 10
 			cooldown_bullet = 0.5 / GameManager.current_round
 			shield = max_shield
@@ -183,26 +194,46 @@ func new_round() -> void:
 			var lance_missile_1: LanceMissile = lance_missile_scene.instantiate()
 			var lance_missile_2: LanceMissile = lance_missile_scene.instantiate()
 			var lance_missile_3: LanceMissile = lance_missile_scene.instantiate()
+			lance_missile_1.position = Vector2(-30, -6)
+			lance_missile_2.position = Vector2(30, -6)
+			lance_missile_3.position = Vector2(-19, -36)
+			lance_missile_1.timer_cooldown = 3
+			lance_missile_2.timer_cooldown = 3
+			lance_missile_3.timer_cooldown = 3
+			lance_missile_1.rotation_speed = 0.013
+			lance_missile_2.rotation_speed = 0.013
+			lance_missile_3.rotation_speed = 0.013
+			add_child(lance_missile_1)
+			add_child(lance_missile_2)
+			add_child(lance_missile_3)
+		5:
+			sprite.play("boss_5")
+			cooldown_bullet = 0.2
+			max_shield = GameManager.current_round * 15
+			shield = max_shield
+			speed = 80
+			find_child("CollisionShape2D").shape.size = Vector2(14.4, 20)
+			
+			var lance_missile_1: LanceMissile = lance_missile_scene.instantiate()
+			var lance_missile_2: LanceMissile = lance_missile_scene.instantiate()
+			var lance_missile_3: LanceMissile = lance_missile_scene.instantiate()
 			var lance_missile_4: LanceMissile = lance_missile_scene.instantiate()
 			lance_missile_1.position = Vector2(-30, -6)
 			lance_missile_2.position = Vector2(30, -6)
 			lance_missile_3.position = Vector2(-19, -36)
 			lance_missile_4.position = Vector2(19, -36)
-			lance_missile_1.rotation_speed = 0.02
-			lance_missile_2.rotation_speed = 0.02
-			lance_missile_3.rotation_speed = 0.02
-			lance_missile_4.rotation_speed = 0.02
+			lance_missile_1.timer_cooldown = 5
+			lance_missile_2.timer_cooldown = 5
+			lance_missile_3.timer_cooldown = 5
+			lance_missile_4.timer_cooldown = 5
+			lance_missile_1.rotation_speed = 0.016
+			lance_missile_2.rotation_speed = 0.016
+			lance_missile_3.rotation_speed = 0.016
+			lance_missile_4.rotation_speed = 0.016
 			add_child(lance_missile_1)
 			add_child(lance_missile_2)
 			add_child(lance_missile_3)
 			add_child(lance_missile_4)
-		5:
-			sprite.play("boss_5")
-			max_shield = GameManager.current_round * 10
-			cooldown_bullet = 0.5 / GameManager.current_round
-			shield = max_shield
-			speed = 100
-			find_child("CollisionShape2D").shape.size = Vector2(14.4, 20)
 		_:
 			sprite.play("boss_5")
 			max_shield = GameManager.current_round * 10
@@ -210,6 +241,8 @@ func new_round() -> void:
 			shield = max_shield
 			speed = min(GameManager.current_round * 50, 200)
 			find_child("CollisionShape2D").shape.size = Vector2(14.4, 20)
+			
+			
 	if GameManager.instance and GameManager.instance.ui:
 		GameManager.instance.ui.update_boss_health_bar(shield, max_shield)
 		
