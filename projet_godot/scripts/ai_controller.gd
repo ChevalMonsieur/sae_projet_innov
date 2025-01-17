@@ -31,17 +31,16 @@ func get_reward() -> float:
 	
 func get_action_space() -> Dictionary:
 	return {
-		#"move_action" : {
-			#"size": 2,
-			#"action_type": "continuous"
-		#},		
+		"move_action" : {
+			"size": 2,
+			"action_type": "continuous"
+		},		
 		"shoot_direction_action" : {
-			"size": 360,
-			"action_type": "discrete"
+			"size": 1,
+			"action_type": "continuous"
 		},
 	}
 	
 func set_action(action) -> void:
-	#move_action = Vector2(floor(action["move_action"][0]), floor(action["move_action"][1]))
-	move_action = Vector2.ZERO
-	shoot_direction_action = Vector2(1, 0).rotated(rad_to_deg(action["shoot_direction_action"]))
+	move_action = Vector2(floor(action["move_action"][0]), floor(action["move_action"][1]))
+	shoot_direction_action = Vector2(1, 0).rotated(action["shoot_direction_action"][0] * 360)
