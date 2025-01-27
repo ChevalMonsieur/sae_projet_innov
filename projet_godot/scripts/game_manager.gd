@@ -57,7 +57,7 @@ func _process(_delta: float) -> void:
 			current_state = state_before_pause
 			
 func new_round() -> void:
-	current_round += 4
+	current_round += 1
 	player.new_round()
 	boss.new_round()
 	GameManager.instance.ui.update_boss_health_bar($boss.shield, $boss.max_shield)
